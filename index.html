@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Game Hub</title>
+<meta name="description" content="A small collection of original games." />
+<link rel="icon" href="data:,">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; background: #101318; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #F2F3F5;
+    min-height: 100vh;
+    padding: 40px 18px 60px;
+  }
+  .header { text-align: center; margin-bottom: 34px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.22em; color: #8A93A3; margin-bottom: 8px; }
+  h1 { font-size: 36px; margin: 0; font-weight: 700; letter-spacing: -0.01em; }
+  .subtitle { color: #8A93A3; font-size: 13px; margin: 6px 0 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .card {
+    display: block;
+    text-decoration: none;
+    background: #171B22;
+    border: 1px solid #262C36;
+    border-radius: 18px;
+    padding: 22px;
+    transition: transform 150ms ease, border-color 150ms ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: #3A4252; }
+  .card:active { transform: translateY(0); }
+  .cardIcon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 14px;
+  }
+  .cardTitle { font-size: 18px; font-weight: 700; color: #F2F3F5; margin: 0 0 4px; }
+  .cardDesc { font-size: 13px; color: #8A93A3; line-height: 1.5; margin: 0; }
+  .footer { text-align: center; color: #4A5261; font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="eyebrow">A SMALL ARCADE</div>
+  <h1>Game Hub</h1>
+  <p class="subtitle">pick something to play</p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<p class="footer">new games get added here over time</p>
+
+<script>
+  // ---- Add a new game by adding one entry here, then dropping the matching
+  // ---- HTML file into the /games folder. Nothing else needs to change.
+  var GAMES = [
+    {
+      title: "Threadwords",
+      file: "games/threadwords.html",
+      icon: "🧵",
+      color: "#C9A24B",
+      desc: "Trace winding paths through a letter grid to spell every hidden word."
+    },
+    {
+      title: "Elementa",
+      file: "games/elementa.html",
+      icon: "🔥",
+      color: "#D9A441",
+      desc: "Combine fire, water, earth and air to reach the day's target element."
+    },
+    {
+      title: "SkyStack",
+      file: "games/skystack.html",
+      icon: "🗼",
+      color: "#C9A24B",
+      desc: "Stack blocks as high as you can. Tap to drop, line them up perfectly."
+    },
+    {
+      title: "Undertow",
+      file: "games/undertow.html",
+      icon: "🌊",
+      color: "#4FBDB4",
+      desc: "Trace one continuous path through every cell, in ascending order."
+    }
+  ];
+
+  var grid = document.getElementById("grid");
+  GAMES.forEach(function (g) {
+    var a = document.createElement("a");
+    a.className = "card";
+    a.href = g.file;
+
+    var icon = document.createElement("div");
+    icon.className = "cardIcon";
+    icon.style.background = g.color + "22";
+    icon.textContent = g.icon;
+
+    var title = document.createElement("h2");
+    title.className = "cardTitle";
+    title.textContent = g.title;
+
+    var desc = document.createElement("p");
+    desc.className = "cardDesc";
+    desc.textContent = g.desc;
+
+    a.appendChild(icon);
+    a.appendChild(title);
+    a.appendChild(desc);
+    grid.appendChild(a);
+  });
+</script>
+</body>
+</html>
